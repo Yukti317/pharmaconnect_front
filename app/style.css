@@ -1,0 +1,69 @@
+:root {
+  --Primary: #e9f4fa;
+  --Secondary: #192839;
+  --HeadText: #192839;
+  --Buttons: #fad258;
+  --Background: #f4fbff;
+  --Text: #0f172a;
+}
+.headtxt-color {
+  color: var(--HeadText);
+  font-weight: 700;
+}
+.txt-decoration {
+  text-decoration: none;
+}
+.commonbtn {
+  background-color: var(--Buttons) !important;
+  width: 100%;
+  border-radius: 12px;
+  color: #000;
+  margin-top: 23px;
+}
+.background-color {
+  background-color: var(--Primary);
+}
+ol,
+ul {
+  padding-left: 0px !important;
+}
+
+.bg-sidebar {
+  background-color: var(--Secondary);
+}
+.sidebarmenutext span,
+.icon {
+  color: white !important;
+}
+.sidebarmenutext:hover span {
+  color: var(--Text) !important;
+}
+.sidebarmenutext:hover .icon {
+  color: var(--Text) !important;
+}
+.followuptable tr th,
+tbody tr td {
+  font-size: 12px !important;
+}
+.radiusbtn {
+  border-radius: 100% !important;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.categoryselect {
+  border-radius: 7px !important;
+}
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.144);
+  box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}
