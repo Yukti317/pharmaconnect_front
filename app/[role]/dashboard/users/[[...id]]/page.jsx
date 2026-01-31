@@ -16,7 +16,12 @@ function UserLayout() {
   const router = useRouter()
   const params = useParams();
   const userId = params?.id?.[0] || null;;
-  const userrole = localStorage.getItem('userrole')
+   const [userrole] = useState(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("userrole");
+    }
+    return null;
+  });
   const [loader, setLoader] = useState(false)
   const [showpsd, setpsd] = useState(false)
   const [initialValues, setInitialValues] = useState({

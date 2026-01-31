@@ -20,9 +20,42 @@ import { useState } from "react";
 import { Dialog, DialogContent, DialogFooter, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-const role = localStorage.getItem('userrole')
+
 
 // Menu items.
+
+export const robotoSlab = Roboto_Slab({
+    weight: ['600'], // You can add more weights if needed, e.g., ['400', '600']
+    subsets: ['latin'],
+    variable: '--font-roboto-slab',
+});
+export function AppSidebar() {
+     const [mounted, setMounted] = useState(false);
+    // const role = localStorage.getItem('userrole')
+      const [role] = useState(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("userrole");
+    }
+    return null;
+  });
+    const [openMenu, setOpenMenu] = useState({}); // track all submenu states
+    const [showlogoutModal, setShowLogoutModal] = useState(false)
+    const router = useRouter()
+    const toggleMenu = (title) => {
+        setOpenMenu((prev) => ({
+            ...prev,
+            [title]: !prev[title],
+        }));
+    };
+    const { state } = useSidebar();
+    const handleLogout = () => {
+        setShowLogoutModal(true);
+    };
+    const confirmLogout = () => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("userrole");
+         window.location.href = "/login"
+    };
 const items = [
     {
         title: "Dashboard",
@@ -62,7 +95,7 @@ const items = [
     },
     {
         title: "Quotations",
-        url: "#",
+        url: `/${role}/dashboard/quotationList`,
         icon: ReceiptText,
          roles:['admin','manager','bde']
     },
@@ -80,31 +113,6 @@ const items = [
     },
 
 ]
-export const robotoSlab = Roboto_Slab({
-    weight: ['600'], // You can add more weights if needed, e.g., ['400', '600']
-    subsets: ['latin'],
-    variable: '--font-roboto-slab',
-});
-export function AppSidebar() {
-    const [openMenu, setOpenMenu] = useState({}); // track all submenu states
-    const [showlogoutModal, setShowLogoutModal] = useState(false)
-    const router = useRouter()
-    const toggleMenu = (title) => {
-        setOpenMenu((prev) => ({
-            ...prev,
-            [title]: !prev[title],
-        }));
-    };
-    const { state } = useSidebar();
-    const handleLogout = () => {
-        setShowLogoutModal(true);
-    };
-    const confirmLogout = () => {
-        localStorage.removeItem("token");
-        localStorage.removeItem("userrole");
-         window.location.href = "/login"
-    };
-
     return (
         <>
             <Sidebar collapsible="icon" variant="sidebar">

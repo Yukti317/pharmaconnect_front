@@ -11,7 +11,12 @@ import { Bar, BarChart, CartesianGrid, Legend, Pie, PieChart, Rectangle, XAxis, 
 import dateFormat, { masks } from "dateformat";
 function AdminDashboardPage() {
   const [dashboarddata, setDashboard] = useState([])
-  const role = localStorage.getItem('userrole')
+   const [role] = useState(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("userrole");
+    }
+    return null;
+  });
   const dashboardData = async (token) => {
     const res = await readData(`/admin/dashboard/stat`, {
       headers: {
